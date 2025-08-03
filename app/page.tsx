@@ -1,11 +1,12 @@
 import FullBackgroundContainer from '@/components/BackgroundMain'
-
-
+import Hero from '@/components/Hero'
+import Banner from '@/components/banner'
 export default function Home() {
   return (
     <>
         <FullBackgroundContainer imageUrl="/BGPlant.png">
-            <p className={'text-black'}>klnklnlkmkjjkxddsa.</p>
+            <Hero/>
+            <Banner/>
         </FullBackgroundContainer>
 
 
