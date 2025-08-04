@@ -1,12 +1,12 @@
 import FullBackgroundContainer from '@/components/BackgroundMain'
 import Hero from '@/components/Hero'
-import Banner from '@/components/banner'
+import Product from '@/components/Product'
 export default function Home() {
   return (
     <>
         <FullBackgroundContainer imageUrl="/BGPlant.png">
             <Hero/>
-            <Banner/>
+            <Product/>
         </FullBackgroundContainer>
 
 

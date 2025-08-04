@@ -5,7 +5,7 @@ import { Star } from 'lucide-react';
 import Image from 'next/image';
 import GlassLayer from '@/components/GlassLayer';
 
-import Carousel from '@/components/ProductCarousel';
+import Carousel from '@/components/Carousel';
 
 export default function PromoSection() {
   return (
@@ -65,7 +65,7 @@ export default function PromoSection() {
         </div>
 
         {/* Right Side */}
-        <div className="w-full lg:w-1/3 flex items-center justify-center">
+        <div className="w-full lg:w-1/3 flex items-center  justify-center">
     <Carousel />
   </div>
       </div>

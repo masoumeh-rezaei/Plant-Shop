@@ -1,41 +1,60 @@
 "use client";
 
 import { ReactNode } from "react";
+import Image from "next/image";
 
-export default function CustomBorderCard({ children }: { children: ReactNode }) {
-  return (
-    <div className="relative  mx-auto p-6 bg-transparent backdrop-blur-md rounded-3xl shadow-lg text-white text-center overflow-hidden">
+interface DeeperTransparentCardProps {
+    children: ReactNode;
+    imageUrl?: string;
+    imageAlt?: string;
+}
 
-      {/* محتوا */}
-      {children}
+export default function DeeperTransparentCard({
+                                                  children,
+                                                  imageUrl,
+                                                  imageAlt = "Card Image",
+                                              }: DeeperTransparentCardProps) {
+    return (
+        <div className="relative mx-auto p-6 bg-transparent backdrop-blur-md  rounded-[100px] shadow-lg text-white">
 
-      {/* گوشه ها */}
-      {/* بالا چپ */}
-      <span className="absolute top-0 left-0 w-[24px] h-[24px] rounded-tl-3xl border-t-[3px] border-l-[3px] border-white/90 pointer-events-none" />
-      {/* بالا راست */}
-      <span className="absolute top-0 right-0 w-[24px] h-[24px] rounded-tr-3xl border-t-[3px] border-r-[3px] border-white/90 pointer-events-none" />
-      {/* پایین چپ */}
-      <span className="absolute bottom-0 left-0 w-[24px] h-[24px] rounded-bl-3xl border-b-[3px] border-l-[3px] border-white/90 pointer-events-none" />
-      {/* پایین راست */}
-      <span className="absolute bottom-0 right-0 w-[24px] h-[24px] rounded-br-3xl border-b-[3px] border-r-[3px] border-white/90 pointer-events-none" />
+            {/* اگر عکس داشت، نشون بده */}
+            {imageUrl && (
+                <div className="w-full flex justify-center mb-4">
+                    <Image
+                        src={imageUrl}
+                        alt={imageAlt}
+                        width={200}
+                        height={200}
+                        className="rounded-xl object-cover"
+                    />
+                </div>
+            )}
 
-      {/* خطوط راست و چپ - کامل */}
-      <span className="absolute top-6 bottom-6 right-0 w-[3px] bg-white/90 pointer-events-none" />
-      <span className="absolute top-6 bottom-6 left-0 w-[3px] bg-white/90 pointer-events-none" />
+            {children}
 
-      {/* خطوط بالا و پایین با gradient محو */}
-      <span
-        className="absolute top-0 left-6 right-6 h-[3px] pointer-events-none"
-        style={{
-          background: "linear-gradient(to right, transparent, rgba(255,255,255,0.7), transparent)",
-        }}
-      />
-      <span
-        className="absolute bottom-0 left-6 right-6 h-[3px] pointer-events-none"
-        style={{
-          background: "linear-gradient(to right, transparent, rgba(255,255,255,0.7), transparent)",
-        }}
-      />
-    </div>
-  );
+            {/* خطوط اصلی بردر با گوشه‌های منطبق بر rounded-[100px] */}
+
+            {/* گوشه بالا-چپ */}
+            <span className="absolute top-0 left-0 w-[100px] h-[100px] border-t-[3px] border-l-[3px] dark:border-white/80 border-gray-800/40  rounded-tl-[100px] pointer-events-none" />
+            {/* گوشه بالا-راست */}
+            <span className="absolute top-0 right-0 w-[100px] h-[100px] border-t-[3px] border-r-[3px] dark:border-white/80 border-gray-800/40 rounded-tr-[100px] pointer-events-none" />
+            {/* گوشه پایین-چپ */}
+            <span className="absolute bottom-0 left-0 w-[100px] h-[100px] border-b-[3px] border-l-[3px] dark:border-white/80 border-gray-800/40 rounded-bl-[100px] pointer-events-none" />
+            {/* گوشه پایین-راست */}
+            <span className="absolute bottom-0 right-0 w-[100px] h-[100px] border-b-[3px] border-r-[3px] dark:border-white/80 border-gray-800/40 rounded-br-[100px] pointer-events-none" />
+
+            {/* بردر بالا (از گوشه‌ها به سمت مرکز محو می‌شود) */}
+            <span className="absolute top-0 left-[100px] w-[500px] h-[3px] bg-gradient-to-r dark:from-white/80 from-gray-800/40 to-transparent pointer-events-none" />
+            <span className="absolute top-0 right-[100px] w-[500px] h-[3px] bg-gradient-to-l dark:from-white/80 from-gray-800/40 to-transparent pointer-events-none" />
+
+            {/* بردر پایین (از گوشه‌ها به سمت مرکز محو می‌شود) */}
+            <span className="absolute bottom-0 left-[100px] w-[500px] h-[3px] bg-gradient-to-r dark:from-white/80 from-gray-800/40 to-transparent pointer-events-none" />
+            <span className="absolute bottom-0 right-[100px] w-[500px] h-[3px] bg-gradient-to-l dark:from-white/80 from-gray-800/40 to-transparent pointer-events-none" />
+
+            {/* بردر سمت چپ (ثابت) */}
+            <span className="absolute top-[100px] left-0 w-[3px] h-[calc(100%-200px)] dark:bg-white/80 bg-gray-800/40 pointer-events-none" />
+            {/* بردر سمت راست (ثابت) */}
+            <span className="absolute top-[100px] right-0 w-[3px] h-[calc(100%-200px)] dark:bg-white/80 bg-gray-800/40 pointer-events-none" />
+        </div>
+    );
 }
