@@ -3,6 +3,7 @@
 import TransparentCard from "@/components/TransparentCard";
 import Image from "next/image";
 import { ShoppingBag } from "lucide-react";
+import SectionTitle from "@/components/Title";
 
 const products = [
     {
@@ -44,8 +45,17 @@ const products = [
 
 export default function ProductGallery() {
     return (
-        <div className="md:p-20 p-10  min-h-screen flex items-center justify-center">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-y-20 ">
+
+        <div className="md:p-20 p-10  min-h-screen flex flex-col items-center justify-center">
+
+            {/*  the SectionTitle component */}
+            <SectionTitle className={'text-gray-600 dark:text-gray-300'}>
+                Gallery
+            </SectionTitle>
+
+            {/* 3. We add a top margin (mt-16) to create space between the title and the product grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-y-20 mt-16 ">
+
                 {products.map((product, index) => (
                     <div key={index} className={'h-[300px] w-[80%]  mt-20 '}>
                         <TransparentCard >
@@ -61,6 +71,7 @@ export default function ProductGallery() {
                             <div className="flex flex-col gap-4 mt-4 dark:text-gray-100 text-black">
                                 <h3 className="text-xl font-bold dark:text-gray-100 text-black">{product.title}</h3>
                                 <p className="text-sm opacity-80 dark:text-gray-100 text-black">{product.description}</p>
+
                                 <div className="flex items-center justify-between pt-4">
                                     <span className="text-xl font-semibold dark:text-gray-100 text-black">{product.price}</span>
                                     <button className="p-2 bg-white/20 hover:bg-white/30 dark:border-black border dark:border-none transition-colors duration-300 rounded-lg">

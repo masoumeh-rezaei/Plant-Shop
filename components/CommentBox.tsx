@@ -17,7 +17,7 @@ export default function TransparentCard({
     return (
         <div className="relative mx-auto w-full max-w-sm p-px rounded-[30px] bg-[conic-gradient(at_top_left,rgba(255,255,255,0.2),transparent_30%)] shadow-lg overflow-hidden">
 
-            {/* ماسک فرورفته بالا */}
+            {/*  */}
             <svg
                 className="absolute inset-0 w-full h-full z-0"
                 viewBox="0 0 400 400"
