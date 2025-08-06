@@ -17,7 +17,7 @@ export default function TransparentCard({
   return (
     <div className="relative mx-auto p-6 bg-transparent backdrop-blur-md rounded-3xl shadow-lg text-white overflow-hidden ">
       
-      {/* اگر عکس داشت، نشون بده */}
+      {/*  */}
       {imageUrl && (
         <div className="w-full flex justify-center mb-4">
           <Image
