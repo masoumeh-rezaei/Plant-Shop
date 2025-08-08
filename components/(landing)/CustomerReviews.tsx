@@ -1,7 +1,7 @@
 // components/CustomerReviews.tsx
 import Image from "next/image";
 import TransparentCard from "./TransparentCard";
-import SectionTitle from "@/components/Title"; // ایمپورت کردن کارتی که ساختیم
+import SectionTitle from "@/components/(landing)/Title"; // ایمپورت کردن کارتی که ساختیم
 
 // داده‌های نمونه برای نظرات
 const reviewsData = [
