@@ -7,19 +7,19 @@ import SectionTitle from "@/components/Title"; // ایمپورت کردن کار
 const reviewsData = [
     {
         name: "Main Josi",
-        avatarUrl: "/avatars/avatar1.png", // مسیر عکس‌ها را متناسب با پروژه خود تغییر دهید
+        avatarUrl: "/profile2.jpg", // مسیر عکس‌ها را متناسب با پروژه خود تغییر دهید
         rating: 5,
         reviewText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
     },
     {
         name: "Alina Thakur",
-        avatarUrl: "/avatars/avatar2.png",
+        avatarUrl: "/profile1.jpg",
         rating: 5,
         reviewText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
     },
     {
         name: "Max M",
-        avatarUrl: "/avatars/avatar3.png",
+        avatarUrl: "/profile3.jpg",
         rating: 5,
         reviewText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
     },
