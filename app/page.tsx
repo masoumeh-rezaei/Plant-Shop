@@ -1,9 +1,9 @@
-import FullBackgroundContainer from '@/components/BackgroundMain'
-import Hero from '@/components/Hero'
-import Product from '@/components/Product'
-import ProductGallery from "@/components/ProductGallery";
-import CustomerReviews from "@/components/CustomerReviews";
-import BigCarousel from "@/components/BigCarousel";
+import FullBackgroundContainer from '@/components/(landing)/BackgroundMain'
+import Hero from '@/components/(landing)/Hero'
+import Product from '@/components/(landing)/Product'
+import ProductGallery from "@/components/(landing)/ProductGallery";
+import CustomerReviews from "@/components/(landing)/CustomerReviews";
+import BigCarousel from "@/components/(landing)/BigCarousel";
 export default function Home() {
   return (
     <>
