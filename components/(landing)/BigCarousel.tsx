@@ -5,8 +5,8 @@ import { useKeenSlider, KeenSliderPlugin, KeenSliderInstance } from "keen-slider
 import "keen-slider/keen-slider.min.css";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import SectionTitle from "@/components/Title";
-import CustomBorderCard from "@/components/CustomBorderCard";
+import SectionTitle from "@/components/(landing)/Title";
+import CustomBorderCard from "@/components/(landing)/CustomBorderCard";
 
 
 interface Slide {
