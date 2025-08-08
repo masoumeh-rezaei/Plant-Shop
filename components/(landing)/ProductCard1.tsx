@@ -1,6 +1,6 @@
 "use client";
 
-import DeeperTransparentCard from "@/components/CustomBorderCard";
+import DeeperTransparentCard from "@/components/(landing)/CustomBorderCard";
 import Image from "next/image";
 import { ShoppingBag } from "lucide-react";
 

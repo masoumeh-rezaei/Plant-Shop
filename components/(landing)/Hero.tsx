@@ -3,9 +3,9 @@
 import React from 'react';
 import { Star } from 'lucide-react';
 import Image from 'next/image';
-import GlassLayer from '@/components/GlassLayer';
+import GlassLayer from '@/components/(landing)/GlassLayer';
 
-import Carousel from '@/components/Carousel';
+import Carousel from '@/components/(landing)/Carousel';
 
 export default function PromoSection() {
   return (

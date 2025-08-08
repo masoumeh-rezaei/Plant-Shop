@@ -1,6 +1,6 @@
 // در فایل pages/index.tsx یا app/page.tsx
-import ProductCard from "@/components/ProductCard1"; // فرض می‌کنیم کامپوننت اصلی با نام ProductCard در دسترس است.
-import ReversedProductCard from "@/components/ProducrCard2"; // کامپوننت جدید که جای عکس و متن آن عوض شده.
+import ProductCard from "@/components/(landing)/ProductCard1"; // فرض می‌کنیم کامپوننت اصلی با نام ProductCard در دسترس است.
+import ReversedProductCard from "@/components/(landing)/ProducrCard2"; // کامپوننت جدید که جای عکس و متن آن عوض شده.
 
 export default function HomePage() {
     return (

@@ -1,9 +1,9 @@
 "use client";
 
-import TransparentCard from "@/components/TransparentCard";
+import TransparentCard from "@/components/(landing)/TransparentCard";
 import Image from "next/image";
 import { ShoppingBag } from "lucide-react";
-import SectionTitle from "@/components/Title";
+import SectionTitle from "@/components/(landing)/Title";
 
 const products = [
     {
