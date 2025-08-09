@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import DarkModeToggle from "@/components/(landing)/DarkModeToggle";
 
 interface MobileNavProps {
   showMenu: boolean;
@@ -28,9 +29,10 @@ const MobileNav: React.FC<MobileNavProps> = ({ showMenu, setShowMenu }) => {
 
   const menues = [
     { id: 1, name: "home", link: '/' },
-    { id: 2, name: "login", link: '/login' },
-    { id: 3, name: "More", link: '#menu' },
-    { id: 4, name: "Contact", link: '/impressum' },
+    { id: 2, name: "login", link: '/auth/login' },
+    { id: 3, name: "Register", link: '/auth/register' },
+    { id: 4, name: "category", link: '/category' },
+    { id: 5, name: "Contact", link: '/impressum' },
   ];
 
   return (
@@ -50,10 +52,12 @@ const MobileNav: React.FC<MobileNavProps> = ({ showMenu, setShowMenu }) => {
         transition-all duration-500 pt-5 pb-6 px-8 flex flex-col justify-between
         z-[9999]`}
         >
-          <div className="flex flex-col items-start gap-4">
-            <div className="flex items-center">
+          <div className="flex flex-col  gap-4">
+            <div className="flex items-center justify-between">
               <p className="text-3xl font-bold">Plant</p>
-              <small className="ml-2 text-gray-300">Moon</small>
+              <div className="flex items-center bg-lightBg rounded-full">
+                <DarkModeToggle />
+              </div>
             </div>
 
             <ul className="flex flex-col gap-2 w-full mt-2">

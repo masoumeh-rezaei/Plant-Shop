@@ -1,17 +1,26 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import type { Product } from '@/data/fakeProducts';
+"use client";
+import Image from "next/image";
+import { useRouter, usePathname } from "next/navigation";
+import type { Product } from "@/data/fakeProducts";
 
 export default function ProductCard({ product }: { product: Product }) {
+    const router = useRouter();
+    const pathname = usePathname();
+
     const priceAfter = (product.price * (1 - product.discountPercent / 100)).toFixed(2);
 
+    const openProduct = () => {
+        router.push(`/product/${product.slug}?from=${pathname}`);
+    };
+
     return (
-        <div className="bg-white rounded-lg shadow-sm overflow-hidden flex flex-col">
-            <Link href={`/product/${product.slug}`} className="block">
-                <div className="relative h-48 w-full">
-                    <Image src={product.image} alt={product.name} fill style={{ objectFit: 'cover' }} />
-                </div>
-            </Link>
+        <div
+            className="bg-white rounded-lg shadow-sm overflow-hidden flex flex-col cursor-pointer"
+            onClick={openProduct}
+        >
+            <div className="relative h-48 w-full">
+                <Image src={product.image} alt={product.name} fill style={{ objectFit: "cover" }} />
+            </div>
 
             <div className="p-3 flex flex-col gap-2 flex-1">
                 <h3 className="text-sm font-semibold">{product.name}</h3>
