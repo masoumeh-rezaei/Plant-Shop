@@ -1,6 +1,7 @@
 import { products } from '@/data/fakeProducts';
 import AddToCartClient from '@/components/AddToCartClient';
 import { notFound } from 'next/navigation';
+import Image from "next/image";
 
 type Props = { params: { slug: string } };
 
@@ -24,11 +25,11 @@ export default function ProductPage({ params }: Props) {
     if (!prod) return notFound();
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 bg-amber-50 mt-10 p-10">
             <div className="md:col-span-2 bg-white rounded shadow p-4">
                 <div className="relative h-96">
                     {/* big image */}
-                    <img src={prod.image} alt={prod.name} className="object-cover w-full h-full rounded" />
+                    <Image width={300} height={300} src={prod.image} alt={prod.name} className="object-cover w-full h-full rounded" />
                 </div>
 
                 <div className="mt-4">
@@ -44,7 +45,7 @@ export default function ProductPage({ params }: Props) {
                             <div className="flex items-baseline gap-2">
                                 <span className="text-sm line-through text-gray-400">${prod.price.toFixed(2)}</span>
                                 <span className="text-xl font-bold">${(prod.price * (1 - prod.discountPercent / 100)).toFixed(2)}</span>
-                                <span className="ml-2 text-xs text-red-500">-{prod.discountPercent}%</span>
+                                <span className="ml-2 text-xs text-blue-500">-{prod.discountPercent}%</span>
                             </div>
                         ) : (
                             <div className="text-xl font-bold">${prod.price.toFixed(2)}</div>

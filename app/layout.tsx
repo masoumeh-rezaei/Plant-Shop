@@ -14,12 +14,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     // Providers must be client components; but we can wrap them in the layout by using client children
     return (
         <html lang="en">
-        <body>
+        <body >
         {/* HeaderClient consumes contexts; so create provider wrappers here */}
         <AuthProvider>
             <CartProvider>
                 <Header />
-                <main>{children}</main>
+                <main className={'mt-16'}>{children}</main>
                 <Footer/>
             </CartProvider>
         </AuthProvider>

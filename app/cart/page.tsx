@@ -13,7 +13,7 @@ export default function CartPage() {
 
     useEffect(() => {
         if (!user) {
-            router.push('/login?next=/cart');
+            router.push('/auth/login');
         }
     }, [user, router]);
 

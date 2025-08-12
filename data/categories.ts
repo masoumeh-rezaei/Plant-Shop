@@ -1,4 +1,9 @@
-export const categories = [
+export type Category = {
+    label: string;
+    slug: string;
+};
+
+export const categories: Category[] = [
     { label: 'All', slug: 'all' },
     { label: 'Roses', slug: 'roses' },
     { label: 'Cut Flowers', slug: 'cut-flowers' },

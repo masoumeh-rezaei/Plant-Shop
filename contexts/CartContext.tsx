@@ -26,6 +26,7 @@ const CartContext = createContext<
     addToCart: (product: Product, qty?: number) => void;
     removeFromCart: (productId: string) => void;
     setQty: (productId: string, quantity: number) => void;
+    getItemQuantity: (productId: string) => number;
     clear: () => void;
 }
     | undefined
@@ -53,7 +54,14 @@ function reducer(state: State, action: Action): State {
         case 'REMOVE':
             return { items: state.items.filter((i) => i.productId !== action.productId) };
         case 'SET_QTY':
-            return { items: state.items.map((i) => (i.productId === action.productId ? { ...i, quantity: Math.max(1, action.quantity) } : i)) };
+            if (action.quantity <= 0) {
+                return { items: state.items.filter((i) => i.productId !== action.productId) };
+            }
+            return {
+                items: state.items.map((i) =>
+                    i.productId === action.productId ? { ...i, quantity: action.quantity } : i
+                )
+            };
         case 'CLEAR':
             return { items: [] };
         default:
@@ -102,12 +110,16 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         dispatch({ type: 'SET_QTY', productId, quantity });
     }
 
+    function getItemQuantity(productId: string) {
+        return state.items.find((i) => i.productId === productId)?.quantity ?? 0;
+    }
+
     function clear() {
         dispatch({ type: 'CLEAR' });
     }
 
     return (
-        <CartContext.Provider value={{ state, addToCart, removeFromCart, setQty, clear }}>
+        <CartContext.Provider value={{ state, addToCart, removeFromCart, setQty, getItemQuantity, clear }}>
             {children}
         </CartContext.Provider>
     );
