@@ -6,7 +6,6 @@ import { notFound } from 'next/navigation';
 
 export const dynamic = 'force-static';
 
-// مسیرهای داینامیک
 export async function generateStaticParams() {
     return categories.map((c) => ({ category: c.slug }));
 }
