@@ -3,20 +3,14 @@ import { products } from '@/data/fakeProducts';
 import CategorySidebar from '@/components/CategorySidebar';
 import AllCategoriesContent from '@/components/AllCategoriesContent';
 
-// تایپ props مطابق Next.js 15
-interface PageProps {
-    params: { category: string };
-}
-
 export const dynamic = 'force-static';
 
-// تولید مسیرهای استاتیک برای build
 export async function generateStaticParams() {
     return categories.map(c => ({ category: c.slug }));
 }
 
-// کامپوننت صفحه
-export default function CategoryPage({ params }: PageProps) {
+// استفاده از `params` مستقیم بدون PageProps اشتباه
+export default function CategoryPage({ params }: { params: { category: string } }) {
     const categoryProducts = products.filter(p => p.category === params.category);
 
     return (
