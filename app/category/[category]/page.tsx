@@ -3,33 +3,18 @@ import { products } from '@/data/fakeProducts';
 import CategorySidebar from '@/components/CategorySidebar';
 import CategoryContent from '@/components/CategoryContent';
 import { notFound } from 'next/navigation';
-import type { Metadata } from 'next';
-
-type Props = { params: { category: string } };
 
 export const dynamic = 'force-static';
 
+// مسیرهای داینامیک
 export async function generateStaticParams() {
     return categories.map((c) => ({ category: c.slug }));
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const slug = params.category;
-    const cat = categories.find((c) => c.slug === slug);
-
-    if (!cat) {
-        return { title: 'Category not found', description: 'Category does not exist' };
-    }
-
-    const filtered = products.filter((p) => p.category === slug);
-    return {
-        title: `${cat.label} - My Flower Shop`,
-        description: `Browse ${filtered.length} ${cat.label.toLowerCase()} products.`
-    };
-}
-export default function CategoryPage({ params }: Props) {
+export default function CategoryPage({ params }: { params: { category: string } }) {
     const categorySlug = params.category;
     const cat = categories.find((c) => c.slug === categorySlug);
+
     if (!cat) return notFound();
 
     const filtered =
