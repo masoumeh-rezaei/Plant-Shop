@@ -1,46 +1,38 @@
-// app/category/[category]/page.tsx
 import { categories } from '@/data/categories';
 import { products } from '@/data/fakeProducts';
 import CategorySidebar from '@/components/CategorySidebar';
 import AllCategoriesContent from '@/components/AllCategoriesContent';
 import type { Metadata } from 'next';
 
-export const dynamic = 'force-static';
-
-
+// تایپ props مطابق Next.js 15
 interface PageProps {
     params: { category: string };
 }
 
+export const dynamic = 'force-static';
 
+// تولید metadata برای SEO
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-    const { category } = params;
-
-    const categoryProducts = products.filter(p => p.category === category);
-    const productCount = categoryProducts.length;
+    const categoryProducts = products.filter(p => p.category === params.category);
 
     return {
-        title: `${category} - My Flower Shop`,
-        description: `Browse ${productCount} products in the ${category} category.`,
+        title: `${params.category} - My Flower Shop`,
+        description: `Browse ${categoryProducts.length} products in the ${params.category} category.`,
     };
 }
 
-
+// تولید مسیرهای استاتیک برای build
 export async function generateStaticParams() {
-    return categories.map(c => ({
-        category: c.slug, // فرض شده categories هر کدام slug دارند
-    }));
+    return categories.map(c => ({ category: c.slug }));
 }
 
-
+// کامپوننت صفحه
 export default function CategoryPage({ params }: PageProps) {
-    const { category } = params;
-
-    const categoryProducts = products.filter(p => p.category === category);
+    const categoryProducts = products.filter(p => p.category === params.category);
 
     return (
         <div className="flex flex-col md:flex-row gap-6">
-            <CategorySidebar categories={categories} current={category} />
+            <CategorySidebar categories={categories} current={params.category} />
             <AllCategoriesContent products={categoryProducts} categories={categories} />
         </div>
     );
