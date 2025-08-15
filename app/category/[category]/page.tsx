@@ -4,7 +4,13 @@ import CategorySidebar from '@/components/CategorySidebar';
 import CategoryContent from '@/components/CategoryContent';
 import { notFound } from 'next/navigation';
 
-export default function CategoryPage({ params }: { params: { category: string } }) {
+type CategoryPageProps = {
+    params: {
+        category: string;
+    };
+};
+
+export default function CategoryPage({ params }: CategoryPageProps) {
     const categorySlug = params.category;
     const cat = categories.find((c) => c.slug === categorySlug);
 
