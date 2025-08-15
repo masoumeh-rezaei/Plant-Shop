@@ -4,12 +4,6 @@ import CategorySidebar from '@/components/CategorySidebar';
 import CategoryContent from '@/components/CategoryContent';
 import { notFound } from 'next/navigation';
 
-export const dynamic = 'force-static';
-
-export async function generateStaticParams() {
-    return categories.map((c) => ({ category: c.slug }));
-}
-
 export default function CategoryPage({ params }: { params: { category: string } }) {
     const categorySlug = params.category;
     const cat = categories.find((c) => c.slug === categorySlug);
