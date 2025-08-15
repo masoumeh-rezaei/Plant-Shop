@@ -4,6 +4,7 @@ import { CartProvider } from '@/contexts/CartContext';
 import Header from '@/components/(landing)/Header';
 import React from "react";
 import Footer from "@/components/(landing)/Footer";
+import {Toaster} from "react-hot-toast";
 
 export const metadata = {
     title: 'My Flower Shop',
@@ -19,6 +20,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <AuthProvider>
             <CartProvider>
                 <Header />
+                <Toaster
+                    position="top-center"
+                    toastOptions={{
+                        duration: 3000,
+                        style: {
+                            background: '#333',
+                            color: '#fff',
+                            fontWeight: 'bold',
+                            borderRadius: '8px',
+                        },
+                    }}
+                />
                 <main className={'mt-16'}>{children}</main>
                 <Footer/>
             </CartProvider>

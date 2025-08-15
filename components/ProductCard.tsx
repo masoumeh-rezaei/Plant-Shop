@@ -1,10 +1,11 @@
-"use client";
+'use client';
 import Image from "next/image";
 import type { Product } from "@/data/fakeProducts";
+import AddToCartClient from "./AddToCartClient"; // مسیر را متناسب با ساختار پروژه‌ت تغییر بده
 
 export default function ProductCard({
                                         product,
-                                        onClick
+                                        onClick,
                                     }: {
     product: Product;
     onClick: () => void;
@@ -42,7 +43,12 @@ export default function ProductCard({
                             <span className="font-bold">${product.price.toFixed(2)}</span>
                         )}
                     </div>
-                    <div className="text-xs text-gray-600">Stock: {product.stock}</div>
+                    <div className="text-xs text-gray-600 dark:text-gray-300">Stock: {product.stock}</div>
+                </div>
+
+                {/* دکمه AddToCart و کنترل تعداد */}
+                <div className={'w-full'} onClick={e => e.stopPropagation()}>{/* جلوگیری از باز شدن صفحه محصول هنگام کلیک روی دکمه */}
+                    <AddToCartClient product={product} />
                 </div>
             </div>
         </div>

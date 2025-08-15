@@ -4,6 +4,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { useCart } from '@/contexts/CartContext';
 import type { Product } from '@/data/fakeProducts';
+import toast from 'react-hot-toast';
 
 export default function AddToCartClient({ product }: { product: Product }) {
     const { isAuthenticated } = useAuth();
@@ -13,8 +14,8 @@ export default function AddToCartClient({ product }: { product: Product }) {
     const [loading, setLoading] = useState(false);
 
     const quantity = getItemQuantity(product.id);
+    const outOfStock = product.stock <= 0;
 
-    // تابع اضافه کردن محصول به سبد
     const handleAdd = () => {
         if (!isAuthenticated) {
             const next = encodeURIComponent(pathname);
@@ -25,27 +26,49 @@ export default function AddToCartClient({ product }: { product: Product }) {
         setTimeout(() => {
             addToCart(product, 1);
             setLoading(false);
-        }, 250);
+            toast.success(`${product.name} added to cart!`, {
+                icon: '🛒',
+                style: {
+                    borderRadius: '6px',
+                    background: '#2c7be5', // classic blue
+                    color: '#fff',
+                    fontWeight: '600',
+                },
+            });
+        }, 300);
     };
 
-    // کم کردن تعداد
     const handleDecrease = () => {
         if (quantity <= 1) {
             removeFromCart(product.id);
+            toast(`${product.name} removed from cart`, {
+                icon: '❌',
+                style: {
+                    borderRadius: '6px',
+                    background: '#6c757d', // muted gray
+                    color: '#fff',
+                    fontWeight: '600',
+                },
+            });
         } else {
             setQty(product.id, quantity - 1);
         }
     };
 
-    // زیاد کردن تعداد (تا سقف استوک)
     const handleIncrease = () => {
         if (quantity < product.stock) {
             setQty(product.id, quantity + 1);
+            toast(`${product.name} quantity increased`, {
+                icon: '➕',
+                style: {
+                    borderRadius: '6px',
+                    background: '#ade8f4', // classic blue
+                    color: '#fff',
+                    fontWeight: '600',
+                },
+            });
         }
     };
-
-    // اگر استوک صفر باشه یا کمتر دکمه غیرفعال
-    const outOfStock = product.stock <= 0;
 
     return (
         <div className="mt-4 flex items-center space-x-2">
@@ -53,38 +76,48 @@ export default function AddToCartClient({ product }: { product: Product }) {
                 <button
                     onClick={handleAdd}
                     disabled={loading || outOfStock}
-                    className={`px-4 py-2 rounded text-white font-semibold transition-colors duration-300
-                        ${outOfStock ? 'bg-gray-400 cursor-not-allowed' : 'bg-green-600 hover:bg-green-700'}`}
+                    className={`px-5 py-2  w-full rounded border font-semibold transition-transform duration-300
+            ${
+                        outOfStock
+                            ? 'bg-gray-300 cursor-not-allowed text-gray-600 border-gray-300 dark:bg-transparent dark:text-gray-400 dark:border-gray-700'
+                            : 'bg-white text-gray-800 border-gray-400 hover:bg-gray-100 active:scale-95 dark:bg-transparent dark:text-gray-200 dark:border-gray-600 dark:hover:bg-emerald-950'
+                    }`}
                 >
                     {outOfStock ? 'Out of stock' : loading ? 'Adding...' : 'Add to Cart'}
                 </button>
             ) : (
-                <div className="flex items-center border rounded overflow-hidden select-none">
-                    <button
-                        onClick={handleDecrease}
-                        disabled={loading}
-                        className="px-3 py-1 bg-red-500 text-white hover:bg-red-600 disabled:opacity-50 transition"
-                        aria-label="Decrease quantity"
-                    >
-                        –
-                    </button>
-                    <div
-                        key={quantity} // باعث انیمیشن بهتر روی تغییر مقدار میشه
-                        className="px-4 py-1 bg-gray-100 dark:bg-gray-700 text-center font-medium min-w-[2rem]"
-                        style={{ transition: 'all 0.3s ease' }}
-                        aria-live="polite"
-                        aria-atomic="true"
-                    >
-                        {quantity}
+                <div className="flex items-center justify-between space-x-2 w-full">
+                    <div className="flex items-center border rounded overflow-hidden select-none shadow-sm border-gray-300 dark:border-gray-600">
+
+                        <button
+                            onClick={handleDecrease}
+                            disabled={loading}
+                            className="px-4 py-1 bg-transparent text-gray-600 hover:text-gray-900 disabled:opacity-50 transition-transform duration-150 active:scale-90 dark:text-gray-300 dark:hover:text-white"
+                            aria-label="Decrease quantity"
+                        >
+                            –
+                        </button>
+                        <div
+                            key={quantity}
+                            className="px-6 py-1 bg-gray-100 dark:bg-transparent text-center font-semibold min-w-[2.5rem] transition-transform duration-300 text-gray-800 dark:text-gray-200 border-x  border-gray-300 dark:border-gray-600"
+                            aria-live="polite"
+                            aria-atomic="true"
+                        >
+                            {quantity}
+                        </div>
+                        <button
+                            onClick={handleIncrease}
+                            disabled={loading || quantity >= product.stock}
+                            className="px-4 py-1 bg-transparent text-gray-600 hover:text-gray-900 disabled:opacity-50 transition-transform duration-150 active:scale-90 dark:text-gray-300 dark:hover:text-white"
+                            aria-label="Increase quantity"
+                        >
+                            +
+                        </button>
+
                     </div>
-                    <button
-                        onClick={handleIncrease}
-                        disabled={loading || quantity >= product.stock}
-                        className={`px-3 py-1 bg-green-600 text-white hover:bg-green-700 disabled:opacity-50 transition`}
-                        aria-label="Increase quantity"
-                    >
-                        +
-                    </button>
+                    <div>
+                        <p>Product added </p>
+                    </div>
                 </div>
             )}
         </div>

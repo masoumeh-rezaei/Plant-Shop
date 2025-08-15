@@ -95,14 +95,14 @@ export default function Carousel() {
 
             <div className="min-h-screen py-10 flex flex-col items-center justify-center">
                 <SectionTitle>
-                    <h2 className="text-3xl font-bold p-2 px-6 dark:text-white text-gray-700">Our Best O2</h2>
+                    Our Best O2
                 </SectionTitle>
 
                 <CustomBorderCard >
                 <div className="relative w-full max-w-7xl mx-auto p-8  text-white">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                         {/* Image Section */}
-                        <div className="relative w-full md:h-[550px] h-[330px] md:h-[650px] flex items-center justify-center">
+                        <div className="relative w-full  h-[330px] md:h-[650px] flex items-center justify-center">
                             <div ref={sliderRef} className="keen-slider h-full w-full">
                                 {slides.map((slide: Slide, idx: number) => (
                                     <div key={idx} className="keen-slider__slide flex justify-center items-center">

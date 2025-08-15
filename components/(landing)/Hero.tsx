@@ -6,6 +6,7 @@ import Image from 'next/image';
 import GlassLayer from '@/components/(landing)/GlassLayer';
 
 import Carousel from '@/components/(landing)/Carousel';
+import Link from "next/link";
 
 export default function PromoSection() {
   return (
@@ -25,9 +26,11 @@ export default function PromoSection() {
           </div>
 
           {/* Explore Button */}
-          <button className="px-7 py-2 border border-gray-800 dark:border-gray-300 text-gray-900 dark:text-white bg-transparent rounded-md hover:bg-gray-100 dark:hover:bg-white/10 transition font-medium shadow-sm">
-            Explore
-          </button>
+          <Link href="/category">
+            <button className="px-7 py-2 border border-gray-800 dark:border-gray-300 text-gray-900 dark:text-white bg-transparent rounded-md hover:bg-gray-100 dark:hover:bg-white/10 transition font-medium shadow-sm">
+              Explore
+            </button>
+          </Link>
 
           {/* Review / Comment Box */}
           <div className="w-full max-w-md lg:w-[70%] ">

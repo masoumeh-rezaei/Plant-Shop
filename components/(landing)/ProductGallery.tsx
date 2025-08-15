@@ -4,6 +4,7 @@ import TransparentCard from "@/components/(landing)/TransparentCard";
 import Image from "next/image";
 import { ShoppingBag } from "lucide-react";
 import SectionTitle from "@/components/(landing)/Title";
+import Link from "next/link";
 
 const products = [
     {
@@ -54,10 +55,10 @@ export default function ProductGallery() {
             </SectionTitle>
 
             {/* 3. We add a top margin (mt-16) to create space between the title and the product grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-y-20 mt-16 ">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-y-20 mt-16 m-auto ">
 
                 {products.map((product, index) => (
-                    <div key={index} className={'h-[300px] w-[80%]  mt-20 '}>
+                    <div key={index} className={'h-[300px] w-[80%] m-auto  mt-20 flex justify-center items-center'}>
                         <TransparentCard >
                             <div className="relative -mt-20 z-10 w-full flex justify-center">
                                 <Image
@@ -65,7 +66,7 @@ export default function ProductGallery() {
                                     alt={product.title}
                                     width={200}
                                     height={200}
-                                    className="object-cover rounded-xl"
+                                    className="object-cover rounded-xl w-50"
                                 />
                             </div>
                             <div className="flex flex-col gap-4 mt-4 dark:text-gray-100 text-black">
@@ -74,9 +75,11 @@ export default function ProductGallery() {
 
                                 <div className="flex items-center justify-between pt-4">
                                     <span className="text-xl font-semibold dark:text-gray-100 text-black">{product.price}</span>
-                                    <button className="p-2 bg-white/20 hover:bg-white/30 dark:border-black border dark:border-none transition-colors duration-300 rounded-lg">
-                                        <ShoppingBag className="w-5 h-5 dark:text-white  text-black " />
-                                    </button>
+                                    <Link href={'/category'} className={'cursor-pointer'}>
+                                        <button className="p-2 bg-white/20 hover:bg-white/30 dark:border-black border dark:border-none transition-colors duration-300 rounded-lg">
+                                            <ShoppingBag className="w-5 h-5 dark:text-white  text-black " />
+                                        </button>
+                                    </Link>
                                 </div>
                             </div>
                         </TransparentCard>

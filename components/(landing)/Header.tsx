@@ -1,4 +1,4 @@
-import HeaderClient from "./HeaderClient";
+import HeaderClient from "./Header/HeaderClient";
 
 export default function Header() {
     return (

@@ -42,10 +42,9 @@ export default function CustomerReviews() {
 
                 <div className="text-center mb-16">
                     <SectionTitle>
-                        <h2 className="text-4xl lg:text-5xl font-bold dark:text-white text-gray-800 mb-4">
-                            Customer Review
-                        </h2>
+                        Customer Review
                     </SectionTitle>
+
 
                     {/* */}
 
