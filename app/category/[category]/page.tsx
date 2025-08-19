@@ -8,6 +8,8 @@ type CategoryPageProps = {
     params: {
         category: string;
     };
+    // اضافه کردن 'searchParams' برای سازگاری کامل‌تر با ساختار props
+    searchParams?: { [key: string]: string | string[] | undefined };
 };
 
 export default function CategoryPage({ params }: CategoryPageProps) {
